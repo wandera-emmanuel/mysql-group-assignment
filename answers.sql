@@ -207,6 +207,7 @@ GRANT ALL PRIVILEGES ON bookstore_db.* TO admin_role;
 GRANT SELECT, INSERT, UPDATE ON bookstore_db.cust_order TO sales_role;
 GRANT SELECT ON bookstore_db.* TO viewer_role;
 
+-- creating users
 CREATE USER 'joy'@'%' IDENTIFIED BY 'joypass';
 CREATE USER 'emmanuel'@'%' IDENTIFIED BY 'emmanuelpass';
 CREATE USER 'james'@'%' IDENTIFIED BY 'jamespass';
