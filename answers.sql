@@ -1,12 +1,8 @@
--- ----------------------------------------
 -- Create the bookstore database
--- ----------------------------------------
 CREATE DATABASE IF NOT EXISTS bookstore_db;
 USE bookstore_db;
 
--- ----------------------------------------
 -- Create country table
--- ----------------------------------------
 CREATE TABLE country (
     country_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
@@ -15,9 +11,7 @@ CREATE TABLE country (
 INSERT INTO country (name) VALUES 
 ('Kenya'), ('Uganda'), ('Tanzania'), ('Rwanda'), ('Ethiopia');
 
--- ----------------------------------------
 -- Create address_status table
--- ----------------------------------------
 CREATE TABLE address_status (
     status_id INT AUTO_INCREMENT PRIMARY KEY,
     status_name VARCHAR(50) NOT NULL
@@ -26,9 +20,7 @@ CREATE TABLE address_status (
 INSERT INTO address_status (status_name) VALUES 
 ('Current'), ('Old');
 
--- ----------------------------------------
 -- Create address table
--- ----------------------------------------
 CREATE TABLE address (
     address_id INT AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(100),
@@ -45,9 +37,7 @@ INSERT INTO address (street, city, postal_code, country_id) VALUES
 ('Moi Road', 'Nakuru', '20100', 1),
 ('Market St', 'Mombasa', '80100', 1);
 
--- ----------------------------------------
 -- Create customer table
--- ----------------------------------------
 CREATE TABLE customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100),
@@ -62,9 +52,7 @@ INSERT INTO customer (first_name, last_name, email) VALUES
 ('Joy', 'Walukaya', 'joywalukaya@mail.com'),
 ('Emmanuel', 'Wandera', 'ewandera@mail.com');
 
--- ----------------------------------------
 -- Create customer_address table
--- ----------------------------------------
 CREATE TABLE customer_address (
     cust_addr_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
@@ -78,9 +66,7 @@ CREATE TABLE customer_address (
 INSERT INTO customer_address (customer_id, address_id, status_id) VALUES
 (1, 1, 1), (2, 2, 1), (3, 3, 1), (4, 4, 1), (5, 5, 1);
 
--- ----------------------------------------
 -- Create publisher table
--- ----------------------------------------
 CREATE TABLE publisher (
     publisher_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
@@ -94,9 +80,7 @@ INSERT INTO publisher (name, address) VALUES
 ('Longhorn Publishers', 'Nairobi'),
 ('Storymoja Africa', 'Mombasa');
 
--- ----------------------------------------
 -- Create book_language table
--- ----------------------------------------
 CREATE TABLE book_language (
     language_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50)
@@ -105,24 +89,20 @@ CREATE TABLE book_language (
 INSERT INTO book_language (name) VALUES 
 ('English'), ('Kiswahili'), ('French'), ('Luo'), ('Kikuyu');
 
--- ----------------------------------------
 -- Create author table
--- ----------------------------------------
 CREATE TABLE author (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100)
 );
 
 INSERT INTO author (name) VALUES
-('Ngugi wa Thiong'o'),
+('Ngugi wa Thiong"o"'),
 ('Grace Ogot'),
 ('Binyavanga Wainaina'),
 ('Margaret Ogola'),
 ('Meja Mwangi');
 
--- ----------------------------------------
 -- Create book table
--- ----------------------------------------
 CREATE TABLE book (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
@@ -140,9 +120,7 @@ INSERT INTO book (title, language_id, publisher_id, price) VALUES
 ('Going Down River Road', 2, 3, 720.00),
 ('A Grain of Wheat', 1, 1, 880.00);
 
--- ----------------------------------------
 -- Create book_author table
--- ----------------------------------------
 CREATE TABLE book_author (
     book_id INT,
     author_id INT,
@@ -154,9 +132,7 @@ CREATE TABLE book_author (
 INSERT INTO book_author (book_id, author_id) VALUES
 (1, 4), (2, 1), (3, 2), (4, 5), (5, 1);
 
--- ----------------------------------------
 -- Create shipping_method table
--- ----------------------------------------
 CREATE TABLE shipping_method (
     method_id INT AUTO_INCREMENT PRIMARY KEY,
     method_name VARCHAR(100)
@@ -165,9 +141,7 @@ CREATE TABLE shipping_method (
 INSERT INTO shipping_method (method_name) VALUES
 ('Bike Courier'), ('Matatu Dropoff'), ('Pick-up Point'), ('Postal Mail'), ('Same Day Delivery');
 
--- ----------------------------------------
 -- Create order_status table
--- ----------------------------------------
 CREATE TABLE order_status (
     status_id INT AUTO_INCREMENT PRIMARY KEY,
     status_name VARCHAR(50)
@@ -176,9 +150,7 @@ CREATE TABLE order_status (
 INSERT INTO order_status (status_name) VALUES
 ('Pending'), ('Processing'), ('Shipped'), ('Delivered'), ('Cancelled');
 
--- ----------------------------------------
 -- Create cust_order table
--- ----------------------------------------
 CREATE TABLE cust_order (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
@@ -193,9 +165,7 @@ CREATE TABLE cust_order (
 INSERT INTO cust_order (customer_id, order_date, shipping_method_id, status_id) VALUES
 (1, '2024-04-01', 1, 2), (2, '2024-04-02', 3, 1), (3, '2024-04-03', 2, 3), (4, '2024-04-04', 4, 4), (5, '2024-04-05', 5, 5);
 
--- ----------------------------------------
 -- Create order_line table
--- ----------------------------------------
 CREATE TABLE order_line (
     order_line_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
@@ -208,9 +178,7 @@ CREATE TABLE order_line (
 INSERT INTO order_line (order_id, book_id, quantity) VALUES
 (1, 1, 2), (2, 2, 1), (3, 3, 3), (4, 4, 1), (5, 5, 2);
 
--- ----------------------------------------
 -- Create order_history table
--- ----------------------------------------
 CREATE TABLE order_history (
     history_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
@@ -225,9 +193,7 @@ INSERT INTO order_history (order_id, status_id, change_date) VALUES
 (2, 1, '2024-04-01'),
 (3, 2, '2024-04-02'), (3, 3, '2024-04-03');
 
--- ----------------------------------------
 -- Create roles and users for access control
--- ----------------------------------------
 CREATE ROLE admin_role;
 CREATE ROLE sales_role;
 CREATE ROLE viewer_role;
